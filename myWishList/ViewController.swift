@@ -17,7 +17,9 @@ class ViewController: UIViewController {
     let deviceArray = ["MacBook","MackBook Air","MackBook Pro","IMac","IMac Pro","Iphone X","Iphone Xr"]
     
     lazy var itemToDisplay = gamesArray
-
+    var wishListArray = [String]()
+    let popUp = Popup()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViews()
@@ -30,7 +32,7 @@ class ViewController: UIViewController {
         segmentControl = UISegmentedControl(items: ["Games","Devices","WishList"])
         segmentControl.selectedSegmentIndex = 0
         segmentControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentControl.addTarget(self, action: #selector(segmentIndexSelected), for: .valueChanged)
+        segmentControl.addTarget(self, action: #selector(indexForSelected(_:)), for: .valueChanged)
         
         tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -49,13 +51,24 @@ class ViewController: UIViewController {
     }
     
     
-    // MARK: - Methods
-    
-    
     // MARK: - Selectors
-    @objc fileprivate func segmentIndexSelected(){
-       
+    @objc fileprivate func indexForSelected(_ segment:UISegmentedControl){
+        switch segment.selectedSegmentIndex {
+        case 0:
+            itemToDisplay = gamesArray
+            tableView.allowsSelection = true
+        case 1:
+            itemToDisplay = deviceArray
+            tableView.allowsSelection = true
+        case 2:
+            itemToDisplay = wishListArray
+            tableView.allowsSelection = false
+        default:
+            print("no more items")
+        }
+        tableView.reloadData()
     }
+    
 }
 
 // MARK: - extension
@@ -71,4 +84,26 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if !wishListArray.contains(itemToDisplay[indexPath.row]) {
+            wishListArray.append(itemToDisplay[indexPath.row])
+        }else {
+            popUp.delegate = self
+            view.shake()
+            view.addSubview(popUp)
+        }
+    }
+    
+}
+
+
+// MARK: - Popup delegate
+extension ViewController: PopupDelegate {
+    
+    func handlePopupDismiss() {
+        UIView.animate(withDuration: 0.3) {
+            self.popUp.removeFromSuperview()
+        }
+    }
 }

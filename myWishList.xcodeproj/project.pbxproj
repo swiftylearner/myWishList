@@ -12,6 +12,9 @@
 		FAC2292622999D17003C12EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAC2292422999D17003C12EC /* Main.storyboard */; };
 		FAC2292822999D17003C12EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC2292722999D17003C12EC /* Assets.xcassets */; };
 		FAC2292B22999D17003C12EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAC2292922999D17003C12EC /* LaunchScreen.storyboard */; };
+		FAC229332299A658003C12EC /* Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC229322299A658003C12EC /* Popup.swift */; };
+		FAC229352299AEBD003C12EC /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC229342299AEBD003C12EC /* Protocol.swift */; };
+		FAC229372299B130003C12EC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC229362299B130003C12EC /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		FAC2292722999D17003C12EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAC2292A22999D17003C12EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAC2292C22999D17003C12EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAC229322299A658003C12EC /* Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popup.swift; sourceTree = "<group>"; };
+		FAC229342299AEBD003C12EC /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
+		FAC229362299B130003C12EC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,9 @@
 			children = (
 				FAC2292022999D17003C12EC /* AppDelegate.swift */,
 				FAC2292222999D17003C12EC /* ViewController.swift */,
+				FAC229322299A658003C12EC /* Popup.swift */,
+				FAC229342299AEBD003C12EC /* Protocol.swift */,
+				FAC229362299B130003C12EC /* Extensions.swift */,
 				FAC2292422999D17003C12EC /* Main.storyboard */,
 				FAC2292722999D17003C12EC /* Assets.xcassets */,
 				FAC2292922999D17003C12EC /* LaunchScreen.storyboard */,
@@ -135,8 +144,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAC229372299B130003C12EC /* Extensions.swift in Sources */,
+				FAC229332299A658003C12EC /* Popup.swift in Sources */,
 				FAC2292322999D17003C12EC /* ViewController.swift in Sources */,
 				FAC2292122999D17003C12EC /* AppDelegate.swift in Sources */,
+				FAC229352299AEBD003C12EC /* Protocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
