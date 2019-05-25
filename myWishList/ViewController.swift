@@ -13,10 +13,16 @@ class ViewController: UIViewController {
     // MARK: - Properties
     var segmentControl:UISegmentedControl!
     var tableView:UITableView!
+    let gamesArray = ["NBA 2k19","Mortal Kombat 11","Fortnite","Mindcraft"]
+    let deviceArray = ["MacBook","MackBook Air","MackBook Pro","IMac","IMac Pro","Iphone X","Iphone Xr"]
+    
+    lazy var itemToDisplay = gamesArray
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViews()
+        tableView.dataSource = self
+        tableView.delegate = self
     }
 
     // MARK: - Functions
@@ -48,7 +54,21 @@ class ViewController: UIViewController {
     
     // MARK: - Selectors
     @objc fileprivate func segmentIndexSelected(){
-        print(segmentControl.selectedSegmentIndex)
+       
     }
 }
 
+// MARK: - extension
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return itemToDisplay.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = itemToDisplay[indexPath.row]
+        return cell
+    }
+    
+}
