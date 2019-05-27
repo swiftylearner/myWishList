@@ -31,12 +31,13 @@ class ItemsController: UIViewController {
     lazy var descriptionLabel:UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Cash: $0"
+        label.text = "Total: $0 "
         label.textAlignment = .center
         return label
     }()
     
     var cashAmount:Double = 0
+    var totolPrice:Double = 0
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -57,12 +58,14 @@ class ItemsController: UIViewController {
         
         // devices
         deviceArray.append(Items(title: "MacBook", price: "59.99"))
-        deviceArray.append(Items(title: "MackBook Air", price: "1,199"))
-        deviceArray.append(Items(title: "MackBook Pro", price: "1,299"))
-        deviceArray.append(Items(title: "IMac", price: "1,099"))
+        deviceArray.append(Items(title: "MackBook Air", price: "1.199"))
+        deviceArray.append(Items(title: "MackBook Pro", price: "1.299"))
+        deviceArray.append(Items(title: "IMac", price: "1.099"))
         deviceArray.append(Items(title: "IMac Pro", price: "60"))
         deviceArray.append(Items(title: "Iphone Xr", price: "49.99"))
         deviceArray.append(Items(title: "Iphone X", price: "60"))
+        
+        getTotalPrice()
     }
 
     // MARK: - Functions
@@ -108,10 +111,10 @@ class ItemsController: UIViewController {
         switch segment.selectedSegmentIndex {
         case 0:
             itemToDisplay = gamesArray
-            tableView.allowsSelection = true
+            configureTableViewCell()
         case 1:
             itemToDisplay = deviceArray
-            tableView.allowsSelection = true
+            configureTableViewCell()
         case 2:
             itemToDisplay = wishListArray
             tableView.allowsSelection = false
@@ -121,12 +124,27 @@ class ItemsController: UIViewController {
         tableView.reloadData()
     }
     
+    fileprivate func configureTableViewCell(){
+        tableView.allowsSelection = true
+        tableView.isEditing = false
+    }
+    
     
     @objc fileprivate func presentWallet(){
         let walletVC = WalletController()
         walletVC.delegate = self
         present(walletVC, animated: true, completion: nil)
     }
+    
+    // #warning("get total for each gategory")
+    fileprivate func getTotalPrice() {
+        let gamePriceTotal = gamesArray.reduce(0.0, {item, item2 in item + item2.price})
+        let devicePriceTotal = deviceArray.reduce(0.0, {item, item2 in item + item2.price })
+        
+        totolPrice = gamePriceTotal + devicePriceTotal
+        descriptionLabel.text = "Total: $\(totolPrice.rounded())  |  Cash: $\(cashAmount.rounded())"
+    }
+    
     
 }
 
@@ -140,12 +158,7 @@ extension ItemsController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
         cell.textLabel?.text = itemToDisplay[indexPath.row].title
-        cell.detailTextLabel?.text = itemToDisplay[indexPath.row].price
-        
-        let price = Double(itemToDisplay[indexPath.row].price)
-        if cashAmount == price {
-            cell.accessoryType = .checkmark
-        }
+        cell.detailTextLabel?.text = String(itemToDisplay[indexPath.row].price)
         
         return cell
     }
@@ -157,13 +170,24 @@ extension ItemsController: UITableViewDataSource, UITableViewDelegate {
             errorPopUp.delegate = self
             view.addSubview(errorPopUp)
             view.shake()
-            
         } else {
             // add item to wish list
             wishListArray.append(itemToDisplay[indexPath.row])
         }
     }
     
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        wishListArray.remove(at: indexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if (itemToDisplay == gamesArray) || (itemToDisplay == deviceArray) {
+            return false
+        }else{
+            return true
+        }
+    }
 
 }
 
@@ -186,7 +210,8 @@ extension ItemsController: WalletDelegate {
     
     func handleAmountOfMoney(added: Double) {
         cashAmount += added
-        descriptionLabel.text = "Cash: $\(cashAmount)"
+        descriptionLabel.text = "Total: $\(totolPrice)  |  Cash: $\(cashAmount.rounded())"
     }
+    
 }
 

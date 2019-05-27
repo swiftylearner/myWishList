@@ -8,12 +8,12 @@
 
 import UIKit
 
-struct Items {
+struct Items : Equatable {
     var title:String
-    var price:String
+    var price:Double
     
     init(title:String,price:String) {
         self.title = title
-        self.price = "$\(price)"
+        self.price = Double(price) ?? 0.0
     }
 }
