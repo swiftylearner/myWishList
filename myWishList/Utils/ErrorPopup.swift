@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Popup: UIView {
+class ErrorPopup: UIView {
     
     let errorLabel:UILabel = {
         let label = UILabel()

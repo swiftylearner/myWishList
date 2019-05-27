@@ -7,25 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FAAD6057229A314300936684 /* WalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD6056229A314300936684 /* WalletController.swift */; };
+		FAAD605A229A4BD900936684 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD6059229A4BD900936684 /* Item.swift */; };
 		FAC2292122999D17003C12EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2292022999D17003C12EC /* AppDelegate.swift */; };
-		FAC2292322999D17003C12EC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2292222999D17003C12EC /* ViewController.swift */; };
+		FAC2292322999D17003C12EC /* ItemsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2292222999D17003C12EC /* ItemsController.swift */; };
 		FAC2292622999D17003C12EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAC2292422999D17003C12EC /* Main.storyboard */; };
 		FAC2292822999D17003C12EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC2292722999D17003C12EC /* Assets.xcassets */; };
 		FAC2292B22999D17003C12EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAC2292922999D17003C12EC /* LaunchScreen.storyboard */; };
-		FAC229332299A658003C12EC /* Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC229322299A658003C12EC /* Popup.swift */; };
+		FAC229332299A658003C12EC /* ErrorPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC229322299A658003C12EC /* ErrorPopup.swift */; };
 		FAC229352299AEBD003C12EC /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC229342299AEBD003C12EC /* Protocol.swift */; };
 		FAC229372299B130003C12EC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC229362299B130003C12EC /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FAAD6056229A314300936684 /* WalletController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletController.swift; sourceTree = "<group>"; };
+		FAAD6059229A4BD900936684 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		FAC2291D22999D17003C12EC /* myWishList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myWishList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAC2292022999D17003C12EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FAC2292222999D17003C12EC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FAC2292222999D17003C12EC /* ItemsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsController.swift; sourceTree = "<group>"; };
 		FAC2292522999D17003C12EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FAC2292722999D17003C12EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAC2292A22999D17003C12EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAC2292C22999D17003C12EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FAC229322299A658003C12EC /* Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popup.swift; sourceTree = "<group>"; };
+		FAC229322299A658003C12EC /* ErrorPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPopup.swift; sourceTree = "<group>"; };
 		FAC229342299AEBD003C12EC /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		FAC229362299B130003C12EC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -41,6 +45,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FAAD6054229A30D400936684 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FAC229322299A658003C12EC /* ErrorPopup.swift */,
+				FAC229342299AEBD003C12EC /* Protocol.swift */,
+				FAC229362299B130003C12EC /* Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		FAAD6055229A30F200936684 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FAC2292222999D17003C12EC /* ItemsController.swift */,
+				FAAD6056229A314300936684 /* WalletController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FAAD6058229A4BBB00936684 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FAAD6059229A4BD900936684 /* Item.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		FAC2291422999D17003C12EC = {
 			isa = PBXGroup;
 			children = (
@@ -60,13 +91,12 @@
 		FAC2291F22999D17003C12EC /* myWishList */ = {
 			isa = PBXGroup;
 			children = (
-				FAC2292022999D17003C12EC /* AppDelegate.swift */,
-				FAC2292222999D17003C12EC /* ViewController.swift */,
-				FAC229322299A658003C12EC /* Popup.swift */,
-				FAC229342299AEBD003C12EC /* Protocol.swift */,
-				FAC229362299B130003C12EC /* Extensions.swift */,
+				FAAD6054229A30D400936684 /* Utils */,
+				FAAD6058229A4BBB00936684 /* Model */,
+				FAAD6055229A30F200936684 /* Controller */,
 				FAC2292422999D17003C12EC /* Main.storyboard */,
 				FAC2292722999D17003C12EC /* Assets.xcassets */,
+				FAC2292022999D17003C12EC /* AppDelegate.swift */,
 				FAC2292922999D17003C12EC /* LaunchScreen.storyboard */,
 				FAC2292C22999D17003C12EC /* Info.plist */,
 			);
@@ -144,9 +174,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAAD6057229A314300936684 /* WalletController.swift in Sources */,
 				FAC229372299B130003C12EC /* Extensions.swift in Sources */,
-				FAC229332299A658003C12EC /* Popup.swift in Sources */,
-				FAC2292322999D17003C12EC /* ViewController.swift in Sources */,
+				FAAD605A229A4BD900936684 /* Item.swift in Sources */,
+				FAC229332299A658003C12EC /* ErrorPopup.swift in Sources */,
+				FAC2292322999D17003C12EC /* ItemsController.swift in Sources */,
 				FAC2292122999D17003C12EC /* AppDelegate.swift in Sources */,
 				FAC229352299AEBD003C12EC /* Protocol.swift in Sources */,
 			);

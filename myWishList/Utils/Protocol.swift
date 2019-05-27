@@ -9,3 +9,7 @@
 protocol PopupDelegate {
     func handlePopupDismiss()
 }
+
+protocol WalletDelegate {
+    func handleAmountOfMoney(added:Double)
+}
