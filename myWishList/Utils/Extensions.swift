@@ -28,3 +28,29 @@ extension UIView {
     }
     
 }
+
+
+extension UITextField {
+    
+    func custom(placeHolder:String,size:CGFloat){
+        let color = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        
+        attributedPlaceholder = NSAttributedString(string: placeHolder, attributes: [NSAttributedString.Key.foregroundColor:color])
+        translatesAutoresizingMaskIntoConstraints = false
+        textAlignment = .center
+        textColor = .white
+        keyboardType = .numberPad
+        font = UIFont.systemFont(ofSize: size)
+    }
+    
+}
+
+
+extension UIImageView {
+    
+    func configure(image:String) {
+        translatesAutoresizingMaskIntoConstraints = false
+        contentMode = .scaleAspectFill
+        self.image = UIImage(named:image)?.withRenderingMode(.alwaysOriginal)
+    }
+}

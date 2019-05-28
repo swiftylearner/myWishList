@@ -12,11 +12,7 @@ class WalletController: UIViewController {
     
     lazy var amountTextField:UITextField = {
         let amount = UITextField()
-        amount.translatesAutoresizingMaskIntoConstraints = false
-        amount.textAlignment = .center
-        amount.placeholder = "$0"
-        amount.keyboardType = .numberPad
-        amount.font = UIFont.systemFont(ofSize: 60)
+        amount.custom(placeHolder: "$0", size: 60)
         return amount
     }()
     
@@ -45,6 +41,12 @@ class WalletController: UIViewController {
         label.textAlignment = .center
         return label
     }()
+    
+    lazy var backgroundImage:UIImageView = {
+        let imagView = UIImageView()
+        imagView.configure(image: "money")
+        return imagView
+    }()
 
     var delegate : WalletDelegate?
     
@@ -52,9 +54,18 @@ class WalletController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         configureViews()
+        
     }
     
     fileprivate func configureViews(){
+        view.addSubview(backgroundImage)
+        NSLayoutConstraint.activate([
+            backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImage.leftAnchor.constraint(equalTo: view.leftAnchor),
+            backgroundImage.rightAnchor.constraint(equalTo: view.rightAnchor),
+            backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
         let stackView = UIStackView(arrangedSubviews: [amountTextField,addButton,descriptionLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -73,10 +84,12 @@ class WalletController: UIViewController {
         
         view.addSubview(backButton)
         NSLayoutConstraint.activate([
-            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             backButton.leftAnchor.constraint(equalTo: addButton.leftAnchor),
             backButton.heightAnchor.constraint(equalToConstant: 50),
         ])
+        
+    
     }
     
     // MARK: - Selectors

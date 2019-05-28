@@ -32,9 +32,17 @@ class ItemsController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Total: $0 "
+        label.textColor = .white
         label.textAlignment = .center
         return label
     }()
+    
+    lazy var backgroundImage:UIImageView = {
+        let imagView = UIImageView()
+        imagView.configure(image: "money")
+        return imagView
+    }()
+
     
     var cashAmount:Double = 0
     var totolPrice:Double = 0
@@ -44,11 +52,14 @@ class ItemsController: UIViewController {
         tableView.reloadData()
     }
     
+    // MARK: - life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViews()
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
         
         // games
         gamesArray.append(Items(title: "NBA 2k19", price: "59.99"))
@@ -58,9 +69,9 @@ class ItemsController: UIViewController {
         
         // devices
         deviceArray.append(Items(title: "MacBook", price: "59.99"))
-        deviceArray.append(Items(title: "MackBook Air", price: "1.199"))
-        deviceArray.append(Items(title: "MackBook Pro", price: "1.299"))
-        deviceArray.append(Items(title: "IMac", price: "1.099"))
+        deviceArray.append(Items(title: "MackBook Air", price: "119.9"))
+        deviceArray.append(Items(title: "MackBook Pro", price: "469.5"))
+        deviceArray.append(Items(title: "IMac", price: "609.0"))
         deviceArray.append(Items(title: "IMac Pro", price: "60"))
         deviceArray.append(Items(title: "Iphone Xr", price: "49.99"))
         deviceArray.append(Items(title: "Iphone X", price: "60"))
@@ -70,7 +81,18 @@ class ItemsController: UIViewController {
 
     // MARK: - Functions
     fileprivate func configureViews(){
+        view.addSubview(backgroundImage)
+        NSLayoutConstraint.activate([
+            backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImage.leftAnchor.constraint(equalTo: view.leftAnchor),
+            backgroundImage.rightAnchor.constraint(equalTo: view.rightAnchor),
+            backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        
         segmentControl = UISegmentedControl(items: ["Games","Devices","WishList"])
+        segmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.white], for: .selected)
+        segmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.white], for: .normal)
         segmentControl.selectedSegmentIndex = 0
         segmentControl.translatesAutoresizingMaskIntoConstraints = false
         segmentControl.addTarget(self, action: #selector(indexForSelected(_:)), for: .valueChanged)
@@ -94,8 +116,6 @@ class ItemsController: UIViewController {
         NSLayoutConstraint.activate([
             walletButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 10),
             walletButton.rightAnchor.constraint(equalTo: view.rightAnchor,constant: -10),
-            walletButton.heightAnchor.constraint(equalToConstant: 50),
-            walletButton.widthAnchor.constraint(equalToConstant: 60)
         ])
         
         view.addSubview(descriptionLabel)
@@ -148,7 +168,7 @@ class ItemsController: UIViewController {
     
 }
 
-// MARK: - extension
+// MARK: - datasource and delegate
 extension ItemsController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -160,10 +180,14 @@ extension ItemsController: UITableViewDataSource, UITableViewDelegate {
         cell.textLabel?.text = itemToDisplay[indexPath.row].title
         cell.detailTextLabel?.text = String(itemToDisplay[indexPath.row].price)
         
+        cell.textLabel?.textColor = .white
+        cell.detailTextLabel?.textColor = .white
+        cell.backgroundColor = .clear
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         // if item already in added to wish list
         if wishListArray.contains(where: { $0.title == itemToDisplay[indexPath.row].title }) {
             // do not add item to wish list
@@ -210,7 +234,7 @@ extension ItemsController: WalletDelegate {
     
     func handleAmountOfMoney(added: Double) {
         cashAmount += added
-        descriptionLabel.text = "Total: $\(totolPrice)  |  Cash: $\(cashAmount.rounded())"
+        descriptionLabel.text = "Total: $\(totolPrice.rounded())  |  Cash: $\(cashAmount.rounded())"
     }
     
 }
